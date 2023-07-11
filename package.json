@@ -1,6 +1,6 @@
 {
-  "name": "my-qwik-empty-starter",
-  "description": "App with Routing built-in ready to create your app",
+  "name": "spotify-sort",
+  "description": "A web app to sort your Spotify playlists",
   "engines": {
     "node": ">=15.0.0"
   },
