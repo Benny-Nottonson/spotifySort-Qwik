@@ -16,8 +16,8 @@ export default component$<AnimatedCircleProps>((props) => {
   const y = props.position[1];
   const svg = (
     <svg
-      width={size + '%'}
-      height={size + '%'}
+      width={size + "%"}
+      height={size + "%"}
       viewBox="0 0 258 258"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
