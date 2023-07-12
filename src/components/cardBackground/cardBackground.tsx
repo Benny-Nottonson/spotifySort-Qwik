@@ -3,7 +3,7 @@ import { component$ } from "@builder.io/qwik";
 export default component$(() => {
   return (
     <div
-      class={`w-full h-full rounded-full absolute inset-0`}
+      class={`w-full h-full rounded-full absolute inset-0 -z-50`}
       style={{ borderRadius: "1.5rem", overflow: "hidden" }}
     >
       <div style={{ opacity: 0.08, width: "inherit", height: "inherit" }}>

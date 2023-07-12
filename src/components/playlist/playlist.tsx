@@ -1,7 +1,8 @@
-import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$, $, useStore } from "@builder.io/qwik";
 import CardBackground from "../cardBackground/cardBackground";
 import { useStylesScoped$ } from "@builder.io/qwik";
 import css from "./playlist.css?inline";
+import SortButton from "../sortButton";
 
 interface PlaylistProps {
   token: string;
@@ -15,7 +16,12 @@ export default component$(({ token, id }: PlaylistProps) => {
   const playlistTitle = useSignal<string>();
   const playlistImageUrl = useSignal<string>();
   const playlistLength = useSignal<number>();
-  const firstThreeTracks = useSignal<string[][]>();
+  const firstThreeTracks = useStore(
+    {
+      trackNames: [] as string[],
+      artistNames: [] as string[],
+    }
+  );
   const isSorting = useSignal<boolean>(false);
 
   const handleSortPlaylist = $(() => {});
@@ -33,9 +39,14 @@ export default component$(({ token, id }: PlaylistProps) => {
         playlistImageUrl.value = data.images[0].url;
         playlistLength.value = data.tracks.total;
         if (!isMobile.value) {
-          firstThreeTracks.value = data.tracks.items
-            .slice(0, 3)
-            .map((item: any) => [item.track.name, item.track.artists[0].name]);
+          data.tracks.items.slice(0, 3).forEach((track: any) => {
+            firstThreeTracks.trackNames.push(track.track.name);
+            firstThreeTracks.artistNames.push(
+              track.track.artists.map((
+                artist: { name: string; }
+              ) => artist.name).join(", ")
+            );
+          });
         }
       })
       .catch((error) => {
@@ -51,88 +62,63 @@ export default component$(({ token, id }: PlaylistProps) => {
   };
 
   return (
-    <div class="outerContainer">
-      <div class="backgroundContainer">
-        <div
-          class="backgroundContainerInner"
-          style={{ borderRadius: "1.5rem", overflow: "hidden" }}
-        >
-          <div style={{ opacity: 0.08 }}>
-            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-              <filter id="noiseFilter">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="2"
-                  numOctaves="1"
-                  stitchTiles="stitch"
-                />
-              </filter>
-              <rect width="100vw" height="100vh" filter="url(#noiseFilter)" />
-            </svg>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              opacity: 0.2,
-              overflow: "hidden",
-            }}
-          >
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="radialGradient" cx="70%" cy="70%" r="100%">
-                  <stop offset="0%" stopColor="#1ED760" stopOpacity="1" />
-                  <stop offset="40%" stopColor="#62CAFF" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#2279CA" stopOpacity="0.2" />
-                </radialGradient>
-              </defs>
-              <rect
-                x="0"
-                y="0"
-                width="100"
-                height="100"
-                fill="url(#radialGradient)"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="innerContainer">
-        <div class="playlistContainer">
-          <div class="playlistImageContainer">
-            <img
-              class="playlistImage"
-              src={playlistImageUrl.value}
-              alt="Playlist Image"
-              height={192}
-              width={192}
-            />
-            <div class="playlistTracksContainer">
-              {firstThreeTracks.value?.map((track: string[], index: number) => (
-                <div class="playlistTrack" key={index}>
-                  <div class="playlistTrackName">{track[0]}</div>
-                  <div class="playlistTrackArtist">{track[1]}</div>
+    <div class="flex items-center justify-center w-auto">
+        <div class="p-4 pb-3 block w-[55vh] rounded-3xl perspective-800 rotate-y-2 ease-in backdrop-blur-2xl bg-white/5 tracking-wide border border-green-400/10">
+          <div class="flex">
+            <>
+              <div class="flex-col">
+                <div class="relative h-48 w-48 mr-4 rounded-full perspective-800 rotate-y-8 transition-transform duration-300">
+                    <img
+                      src={playlistImageUrl.value}
+                      alt="Playlist"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: "fill" }}
+                      width={196}
+                      height={196}
+                      class="rounded-md opacity-90"
+                      loading="eager"
+                    />
                 </div>
-              ))}
+                <div class="grid float-left">
+                  <p class="text-gray-400 text-base mt-2 text-left">
+                    {playlistLength.value} songs
+                  </p>
+                  <p class="text-gray-200 text-lg text-left">
+                    {playlistTitle}
+                  </p>
+                </div>
+              </div>
+            </>
+            <div class="flex flex-col justify-between">
+              <div>
+                <ul class="text-black/80 space-y-1 text-left">
+                  {firstThreeTracks.trackNames.map((trackName, index) => (
+                      <>
+                        <li class="truncate text-gray-200 text-base">
+                          {truncateText(trackName, maxCharacters)} -
+                        </li>
+                        <li class="text-gray-400 text-lg">
+                          {truncateText(firstThreeTracks.artistNames[index], maxCharacters)}
+                        </li>
+                      </>
+                    ))}
+                </ul>
+              </div>
+              <div class="flex justify-end items-end mt-4">
+                <button
+                  class={`float-right ml-36 rounded-lg brightness-110 ${
+                    isSorting.value ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                  onClick$={handleSortPlaylist}
+                  disabled={isSorting.value}
+                >
+                  <SortButton />
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="playlistInfoContainer">
-            <div class="playlistLength">
-              {playlistLength.value}{" "}
-              {playlistLength.value === 1 ? " song" : " songs"}
-            </div>
-            <div class="playlistTitle">
-              {playlistTitle.value
-                ? truncateText(playlistTitle.value, maxCharacters)
-                : ""}
-            </div>
-          </div>
-          <div class="playlistSortButton">
-            <button onClick$={handleSortPlaylist}>Sort</button>
+            <CardBackground />
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 });
