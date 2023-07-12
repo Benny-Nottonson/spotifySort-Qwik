@@ -6,7 +6,7 @@ export default component$(() => {
       class={`w-full h-full rounded-full absolute inset-0`}
       style={{ borderRadius: "1.5rem", overflow: "hidden" }}
     >
-      <div style={{ opacity: 0.08, width: "100vw", height: "100vh" }}>
+      <div style={{ opacity: 0.08, width: "inherit", height: "inherit" }}>
         <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
           <filter id="noiseFilter">
             <feTurbulence
@@ -16,16 +16,16 @@ export default component$(() => {
               stitchTiles="stitch"
             />
           </filter>
-          <rect width="100vw" height="100vh" filter="url(#noiseFilter)" />
+          <rect width="inherit" height="inherit" filter="url(#noiseFilter)" />
         </svg>
       </div>
       <div
         style={{
-          position: "absolute",
+          position: "relative",
           top: 0,
           left: 0,
-          width: "100vw",
-          height: "100vh",
+          width: "inherit",
+          height: "inherit",
           opacity: 0.2,
         }}
       >
