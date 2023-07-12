@@ -7,6 +7,9 @@ import {
 } from "@builder.io/qwik";
 import css from "./authButton.css?inline";
 
+const scopes =
+  "playlist-read-private playlist-modify-private playlist-modify-public";
+
 export default component$(() => {
   useStylesScoped$(css);
   const isLogged = useSignal<string>();
@@ -52,7 +55,9 @@ export default component$(() => {
 
     const authorizationUrl = `https://accounts.spotify.com/authorize?client_id=${"54da531311af407b97ebbb354dc29a85"}&response_type=code&redirect_uri=${encodeURIComponent(
       baseUrl + "login-callback",
-    )}&code_challenge_method=S256&code_challenge=${codeChallenge}`;
+    )}&code_challenge_method=S256&code_challenge=${codeChallenge}&scope=${encodeURIComponent(
+      scopes,
+    )}`;
 
     localStorage.setItem("code_verifier", codeVerifier);
 
@@ -83,6 +88,8 @@ export default component$(() => {
             redirect_uri: redirectUri,
             client_id: clientId,
             code_verifier: verifier,
+            scope:
+              "playlist-read-private playlist-modify-private playlist-modify-public",
           });
 
           const response = await fetch(tokenUrl, {
