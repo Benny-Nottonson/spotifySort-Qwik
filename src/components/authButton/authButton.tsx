@@ -1,7 +1,20 @@
-import { component$, useSignal, $, useVisibleTask$ } from "@builder.io/qwik";
+import {
+  component$,
+  useSignal,
+  $,
+  useVisibleTask$,
+  useStylesScoped$,
+} from "@builder.io/qwik";
+import css from "./authButton.css?inline";
 
 export default component$(() => {
+  useStylesScoped$(css);
   const isLogged = useSignal<string>();
+  const auth = useSignal<Element>();
+
+  const reload = $(() => {
+    location.reload();
+  });
 
   const login = $(async () => {
     const generateRandomString = (length: number) => {
@@ -38,7 +51,7 @@ export default component$(() => {
     const baseUrl = window.location.href;
 
     const authorizationUrl = `https://accounts.spotify.com/authorize?client_id=${"54da531311af407b97ebbb354dc29a85"}&response_type=code&redirect_uri=${encodeURIComponent(
-      baseUrl + "/login-callback",
+      baseUrl + "login-callback",
     )}&code_challenge_method=S256&code_challenge=${codeChallenge}`;
 
     localStorage.setItem("code_verifier", codeVerifier);
@@ -61,7 +74,7 @@ export default component$(() => {
         try {
           const tokenUrl = "https://accounts.spotify.com/api/token";
           const baseUrl = window.location.href;
-          const redirectUri = baseUrl + "/login-callback";
+          const redirectUri = baseUrl + "login-callback";
           const clientId = "54da531311af407b97ebbb354dc29a85";
 
           const requestBody = new URLSearchParams({
@@ -85,7 +98,7 @@ export default component$(() => {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
             isLogged.value = data.access_token;
-            location.reload();
+            reload();
           } else {
             console.error(
               "Failed to retrieve token from Spotify.",
@@ -109,7 +122,24 @@ export default component$(() => {
   });
 
   useVisibleTask$(() => {
-    isLogged.value = localStorage.getItem("access_token")!;
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            isLogged.value = accessToken;
+          } else {
+            refreshToken();
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred during profile retrieval:", error);
+        });
+    }
   });
 
   const refreshToken = $(() => {
@@ -133,39 +163,54 @@ export default component$(() => {
     }
   });
 
-  const getProfile = $(async () => {
-    const accessToken = localStorage.getItem("access_token");
-
-    if (accessToken) {
-      try {
-        const response = await fetch("https://api.spotify.com/v1/me", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-        } else {
-          console.error("Failed to retrieve profile from Spotify.");
-        }
-      } catch (error) {
-        console.error("An error occurred during profile retrieval:", error);
-      }
-    }
+  const logout = $(() => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    reload();
   });
 
   return (
-    <div>
+    <div ref={auth}>
       {isLogged.value ? (
         <>
-          <button onClick$={getProfile}>Get profile</button>
-          <button onClick$={refreshToken}>Refresh token</button>
-          <p>User is logged in. Token: {isLogged.value}</p>
+          <button class="loginButton" onClick$={logout}>
+            <div class="buttonWrapper">
+              <div class="buttonContent">
+                <div class="buttonInner">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.669 11.538a.498.498 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686zm.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288z" />
+                  </svg>
+                  <p class="buttonText">Logout</p>
+                </div>
+              </div>
+            </div>
+          </button>
         </>
       ) : (
-        <button onClick$={login}>Login</button>
+        <button class="loginButton" onClick$={login}>
+          <div class="buttonWrapper">
+            <div class="buttonContent">
+              <div class="buttonInner">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.669 11.538a.498.498 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686zm.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288z" />
+                </svg>
+                <p class="buttonText">Login</p>
+              </div>
+            </div>
+          </div>
+        </button>
       )}
     </div>
   );

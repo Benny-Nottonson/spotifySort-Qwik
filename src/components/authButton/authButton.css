@@ -1,0 +1,58 @@
+.loginButton {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background: none;
+  width: fit-content;
+}
+
+.buttonWrapper {
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  opacity: 0.9;
+  background: linear-gradient(
+    90deg,
+    rgba(21, 128, 61, 1) 0%,
+    rgba(13, 148, 138, 1) 50%,
+    rgba(240, 171, 252, 1) 100%
+  );
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonContent {
+  padding-left: 0.75rem;
+  border-radius: 9999px;
+  width: 9rem;
+  height: 3rem;
+  background: rgb(21, 128, 61);
+  background: linear-gradient(
+    145deg,
+    rgba(21, 128, 61, 1) 0%,
+    rgba(37, 99, 235, 0.5) 50%,
+    rgba(13, 148, 136, 0.6) 100%
+  );
+  opacity: 0.9;
+}
+
+.buttonInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.buttonText {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 600;
+  opacity: 0.8;
+  color: #000000;
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.4),
+    0 0 32px rgba(255, 255, 255, 0.5);
+}

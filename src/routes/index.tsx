@@ -9,7 +9,9 @@ export default component$(() => {
     <>
       <Background />
       <NeonText text="Spotify Sort" size={5} />
-      <AuthButton />
+      <div class="buttonClass authButton">
+        <AuthButton />
+      </div>
     </>
   );
 });
