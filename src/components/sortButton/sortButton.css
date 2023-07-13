@@ -1,0 +1,41 @@
+.outerContainer {
+    width: 8rem;
+    height: 2.5rem;
+    background-color: rgba(51, 65, 85, 0.05);
+    border-color: rgba(74, 222, 128, 0.2);
+    border-width: 1px;
+    border-radius: 9999px;
+    overflow: hidden;
+    transform: translate(-1rem);
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.outerContainer:hover {
+    transform: scale(1.075) translate(-1rem);
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.topMargin {
+    margin-top: 0.5rem;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, .5);
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.buttonText {
+    color: rgb(255 255 255);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}

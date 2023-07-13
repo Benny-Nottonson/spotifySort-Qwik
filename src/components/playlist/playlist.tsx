@@ -2,7 +2,7 @@ import { component$, useSignal, useVisibleTask$, $, useStore } from "@builder.io
 import CardBackground from "../cardBackground/cardBackground";
 import { useStylesScoped$ } from "@builder.io/qwik";
 import css from "./playlist.css?inline";
-import SortButton from "../sortButton";
+import SortButton from "../sortButton/sortButton";
 
 interface PlaylistProps {
   token: string;
@@ -62,12 +62,12 @@ export default component$(({ token, id }: PlaylistProps) => {
   };
 
   return (
-    <div class="flex items-center justify-center w-auto">
-        <div class="p-4 pb-3 block w-[55vh] rounded-3xl perspective-800 rotate-y-2 ease-in backdrop-blur-2xl bg-white/5 tracking-wide border border-green-400/10">
+    <div class="outerContainer">
+        <div class="innerContainer">
           <div class="flex">
             <>
               <div class="flex-col">
-                <div class="relative h-48 w-48 mr-4 rounded-full perspective-800 rotate-y-8 transition-transform duration-300">
+                <div class="imageContainer">
                     <img
                       src={playlistImageUrl.value}
                       alt="Playlist"
@@ -75,39 +75,39 @@ export default component$(({ token, id }: PlaylistProps) => {
                       style={{ objectFit: "fill" }}
                       width={196}
                       height={196}
-                      class="rounded-md opacity-90"
+                      class="image"
                       loading="eager"
                     />
                 </div>
-                <div class="grid float-left">
-                  <p class="text-gray-400 text-base mt-2 text-left">
+                <div class="dataContainer">
+                  <p class="dataText">
                     {playlistLength.value} songs
                   </p>
-                  <p class="text-gray-200 text-lg text-left">
+                  <p class="dataTextLarge">
                     {playlistTitle}
                   </p>
                 </div>
               </div>
             </>
-            <div class="flex flex-col justify-between">
+            <div class="trackContainer">
               <div>
                 <ul class="text-black/80 space-y-1 text-left">
                   {firstThreeTracks.trackNames.map((trackName, index) => (
                       <>
-                        <li class="truncate text-gray-200 text-base">
+                        <li class="truncatedText">
                           {truncateText(trackName, maxCharacters)} -
                         </li>
-                        <li class="text-gray-400 text-lg">
+                        <li class="truncatedTextLarge">
                           {truncateText(firstThreeTracks.artistNames[index], maxCharacters)}
                         </li>
                       </>
                     ))}
                 </ul>
               </div>
-              <div class="flex justify-end items-end mt-4">
+              <div class="buttonContainer">
                 <button
-                  class={`float-right ml-36 rounded-lg brightness-110 ${
-                    isSorting.value ? "opacity-70 cursor-not-allowed" : ""
+                  class={`buttonClass ${
+                    isSorting.value ? "buttonClassActive" : ""
                   }`}
                   onClick$={handleSortPlaylist}
                   disabled={isSorting.value}

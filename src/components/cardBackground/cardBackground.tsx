@@ -1,12 +1,11 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import css from "./cardBackground.css?inline";
 
 export default component$(() => {
+  useStylesScoped$(css);
   return (
-    <div
-      class={`w-full h-full rounded-full absolute inset-0 -z-50`}
-      style={{ borderRadius: "1.5rem", overflow: "hidden" }}
-    >
-      <div style={{ opacity: 0.08, width: "inherit", height: "inherit" }}>
+    <div class="outerContainer">
+      <div class="innerContainer">
         <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
           <filter id="noiseFilter">
             <feTurbulence
@@ -16,19 +15,10 @@ export default component$(() => {
               stitchTiles="stitch"
             />
           </filter>
-          <rect width="inherit" height="inherit" filter="url(#noiseFilter)" />
+          <rect width="100vw" height="100vh" filter="url(#noiseFilter)" />
         </svg>
       </div>
-      <div
-        style={{
-          position: "relative",
-          top: 0,
-          left: 0,
-          width: "inherit",
-          height: "inherit",
-          opacity: 0.2,
-        }}
-      >
+      <div class="radialContainer">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="radialGradient" cx="70%" cy="70%" r="100%">

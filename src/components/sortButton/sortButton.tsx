@@ -1,12 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import CardBackground from "../cardBackground/cardBackground";
+import css from "./sortButton.css?inline";
 
 const spotifyIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
       <path
         fill="none"
         stroke="white"
-        strokeWidth={5}
+        stroke-width="5"
         d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8Z"
       />
       <path
@@ -17,19 +18,14 @@ const spotifyIcon = (
   );
 
 export default component$(() => {
+    useStylesScoped$(css);
     return (
-        <div class="w-32 h-10 border border-green-400/20 rounded-full bg-slate-700/5 overflow-hidden -translate-x-4 hover:scale-110 duration-500 ease-in-out">
+        <div class="outerContainer">
           <CardBackground />
-          <div class="flex flex-row items-center justify-center">
-            <div
-              class="flex flex-row items-center justify-center mt-2"
-              style={{
-                textShadow:
-                  "0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, .5)",
-              }}
-            >
-              <div class="w-4 h-4">{spotifyIcon}</div>
-              <p class="text-white text-sm font-semibold ml-2">Sort Playlist</p>
+          <div class="innerContainer">
+            <div class="innerContainer topMargin">
+              <div class="icon">{spotifyIcon}</div>
+              <p class="buttonText">Sort Playlist</p>
             </div>
           </div>
         </div>
