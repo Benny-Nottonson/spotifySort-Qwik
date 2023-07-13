@@ -97,4 +97,14 @@
     opacity: 0;
     transform: scale(-1, 1);
   }
+
+  .carousel-arrow.left {
+    left: 0;
+    z-index: 999;
+  }
+
+  .carousel-arrow.right {
+    right: 0;
+    z-index: 999;
+  }
 }
