@@ -1,4 +1,10 @@
-import { component$, useSignal, useVisibleTask$, $, useStore } from "@builder.io/qwik";
+import {
+  component$,
+  useSignal,
+  useVisibleTask$,
+  $,
+  useStore,
+} from "@builder.io/qwik";
 import CardBackground from "../cardBackground/cardBackground";
 import { useStylesScoped$ } from "@builder.io/qwik";
 import css from "./playlist.css?inline";
@@ -16,12 +22,10 @@ export default component$(({ token, id }: PlaylistProps) => {
   const playlistTitle = useSignal<string>();
   const playlistImageUrl = useSignal<string>();
   const playlistLength = useSignal<number>();
-  const firstThreeTracks = useStore(
-    {
-      trackNames: [] as string[],
-      artistNames: [] as string[],
-    }
-  );
+  const firstThreeTracks = useStore({
+    trackNames: [] as string[],
+    artistNames: [] as string[],
+  });
   const isSorting = useSignal<boolean>(false);
 
   const handleSortPlaylist = $(() => {});
@@ -42,9 +46,9 @@ export default component$(({ token, id }: PlaylistProps) => {
           data.tracks.items.slice(0, 3).forEach((track: any) => {
             firstThreeTracks.trackNames.push(track.track.name);
             firstThreeTracks.artistNames.push(
-              track.track.artists.map((
-                artist: { name: string; }
-              ) => artist.name).join(", ")
+              track.track.artists
+                .map((artist: { name: string }) => artist.name)
+                .join(", "),
             );
           });
         }
@@ -63,62 +67,61 @@ export default component$(({ token, id }: PlaylistProps) => {
 
   return (
     <div class="outerContainer">
-        <div class="innerContainer">
-          <div class="flex">
-            <>
-              <div class="flex-col">
-                <div class="imageContainer">
-                    <img
-                      src={playlistImageUrl.value}
-                      alt="Playlist"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{ objectFit: "fill" }}
-                      width={196}
-                      height={196}
-                      class="image"
-                      loading="eager"
-                    />
-                </div>
-                <div class="dataContainer">
-                  <p class="dataText">
-                    {playlistLength.value} songs
-                  </p>
-                  <p class="dataTextLarge">
-                    {playlistTitle}
-                  </p>
-                </div>
+      <div class="innerContainer">
+        <div class="flex">
+          <>
+            <div class="flex-col">
+              <div class="imageContainer">
+                <img
+                  src={playlistImageUrl.value}
+                  alt="Playlist"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: "fill" }}
+                  width={196}
+                  height={196}
+                  class="image"
+                  loading="eager"
+                />
               </div>
-            </>
-            <div class="trackContainer">
-              <div>
-                <ul class="text-black/80 space-y-1 text-left">
-                  {firstThreeTracks.trackNames.map((trackName, index) => (
-                      <>
-                        <li class="truncatedText">
-                          {truncateText(trackName, maxCharacters)} -
-                        </li>
-                        <li class="truncatedTextLarge">
-                          {truncateText(firstThreeTracks.artistNames[index], maxCharacters)}
-                        </li>
-                      </>
-                    ))}
-                </ul>
-              </div>
-              <div class="buttonContainer">
-                <button
-                  class={`buttonClass ${
-                    isSorting.value ? "buttonClassActive" : ""
-                  }`}
-                  onClick$={handleSortPlaylist}
-                  disabled={isSorting.value}
-                >
-                  <SortButton />
-                </button>
+              <div class="dataContainer">
+                <p class="dataText">{playlistLength.value} songs</p>
+                <p class="dataTextLarge">{playlistTitle}</p>
               </div>
             </div>
-            <CardBackground />
+          </>
+          <div class="trackContainer">
+            <div>
+              <ul class="text-black/80 space-y-1 text-left">
+                {firstThreeTracks.trackNames.map((trackName, index) => (
+                  <>
+                    <li class="truncatedText">
+                      {truncateText(trackName, maxCharacters)} -
+                    </li>
+                    <li class="truncatedTextLarge">
+                      {truncateText(
+                        firstThreeTracks.artistNames[index],
+                        maxCharacters,
+                      )}
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </div>
+            <div class="buttonContainer">
+              <button
+                class={`buttonClass ${
+                  isSorting.value ? "buttonClassActive" : ""
+                }`}
+                onClick$={handleSortPlaylist}
+                disabled={isSorting.value}
+              >
+                <SortButton />
+              </button>
+            </div>
           </div>
+          <CardBackground />
         </div>
       </div>
-    );
+    </div>
+  );
 });
