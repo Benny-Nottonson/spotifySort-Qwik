@@ -6,6 +6,32 @@
   border-radius: 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .outerContainer {
+    width: 10vw;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .innerContainer {
+    width: 10vw;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .trackContainer {
+    width: 0;
+    height: 0;
+  }
+
+  .buttonContainer {
+    /* position to the bottom right corner of parent */
+    
+  }
+}
+
 .innerContainer {
   padding: 1rem;
   padding-bottom: 0.75rem;
