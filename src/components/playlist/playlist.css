@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   width: auto;
+  border-radius: 1.5rem;
 }
 
 .innerContainer {
