@@ -44,7 +44,7 @@ export default component$(({ token }: CarouselProps) => {
 
   return (
     <div class="carousel">
-      <div class="carousel-arrow left" onClick$={prevItem}>{`<`}</div>
+      <div class="carousel-arrow left" onClick$={prevItem}>{`➤`}</div>
       {playlists.value.map((playlistId: string, index: number) => (
         <div
           key={playlistId}
@@ -63,7 +63,7 @@ export default component$(({ token }: CarouselProps) => {
           <Playlist token={token} id={playlistId} />
         </div>
       ))}
-      <div class="carousel-arrow right" onClick$={nextItem}>{`>`}</div>
+      <div class="carousel-arrow right" onClick$={nextItem}>{`➤`}</div>
     </div>
   );
 });
