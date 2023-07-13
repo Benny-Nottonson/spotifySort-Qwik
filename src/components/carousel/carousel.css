@@ -66,6 +66,7 @@
   cursor: pointer;
   opacity: 0.8;
   position: absolute;
+  user-select: none;
 }
 
 .carousel-arrow:hover {
@@ -79,4 +80,21 @@
 
 .carousel-arrow.right {
   right: -60%;
+}
+
+@media (max-width: 768px) {
+  .carousel-item.left {
+    transform: scale(0.8) translateX(-70%);
+    opacity: 0;
+  }
+
+  .carousel-item.right {
+    transform: scale(0.8) translateX(70%);
+    opacity: 0;
+  }
+
+  .carousel-arrow.far {
+    opacity: 0;
+    transform: scale(-1, 1);
+  }
 }

@@ -6,32 +6,6 @@
   border-radius: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .outerContainer {
-    width: 10vw;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .innerContainer {
-    width: 10vw;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .trackContainer {
-    width: 0;
-    height: 0;
-  }
-
-  .buttonContainer {
-    /* position to the bottom right corner of parent */
-    
-  }
-}
-
 .innerContainer {
   padding: 1rem;
   padding-bottom: 0.75rem;
@@ -123,6 +97,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   margin-top: 1rem;
+  padding:2%;
 }
 
 .buttonClass {
@@ -141,4 +116,21 @@
 .buttonClass:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+
+@media (max-width: 768px) {
+  .outerContainer {
+    width: 15rem;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .buttonContainer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin:10px;
+  }
 }
