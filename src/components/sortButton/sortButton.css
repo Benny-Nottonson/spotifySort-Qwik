@@ -13,6 +13,7 @@
 
 .outerContainer:hover {
     transform: scale(1.075) translate(-1rem);
+    cursor: pointer;
 }
 
 .innerContainer {

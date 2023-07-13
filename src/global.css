@@ -1,26 +1,45 @@
-/**
- * Tailwind CSS imports
- * View the full documentation at https://tailwindcss.com
- */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: theme('borderColor.DEFAULT', currentColor);
+}
 
-/**
- * Tailwind CSS imports
- * View the full documentation at https://tailwindcss.com
- */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
 
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
