@@ -2,7 +2,7 @@
   "name": "spotify-sort",
   "description": "A web app to sort your Spotify playlists",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "private": true,
   "scripts": {
