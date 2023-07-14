@@ -9,12 +9,12 @@ export const onRequest: RequestHandler = event => {
     `default-src 'self' 'unsafe-inline'`,
     `font-src 'self'`,
     `img-src 'self' 'unsafe-inline' data:`,
-    `script-src 'self' 'unsafe-inline' https: 'nonce-${nonce}' 'strict-dynamic'`,
     `style-src 'self' 'unsafe-inline'`,
     `frame-src 'self' 'nonce-${nonce}'`,
     `object-src 'none'`,
     `base-uri 'self'`,
-    'vitals.vercel-insights.com'
+    'vitals.vercel-insights.com',
+    'api.spotify.com'
   ];
  
   event.headers.set("Content-Security-Policy", csp.join("; "));
