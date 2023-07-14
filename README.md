@@ -22,7 +22,7 @@ To use this project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Benny-Nottonson/spotifySort-Qwik.git`
 2. Install the dependencies: `npm install`
-3. Configure your Spotify API credentials in the `.env` file
+3. Configure your Spotify API credentials in the `auth-callback` file
 4. Run the project: `npm start`
 
 ## Features
