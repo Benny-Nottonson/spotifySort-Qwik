@@ -11,7 +11,7 @@ export const onRequest: RequestHandler = event => {
     `frame-src 'self' 'nonce-${nonce}'`,
     `object-src 'none'`,
     `base-uri 'self'`,
-    `connect-src 'self' https://api.spotify.com`,
+    `connect-src 'self' *`,
     `img-src 'self' *`,
   ];
  
