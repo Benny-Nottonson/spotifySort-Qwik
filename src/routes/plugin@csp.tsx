@@ -6,14 +6,11 @@ export const onRequest: RequestHandler = event => {
   const nonce = Date.now().toString(36);
   event.sharedMap.set("@nonce", nonce);
   const csp = [
+    `default-src 'self' 'unsafe-inline'`,
     `font-src 'self'`,
-    `img-src 'self' 'unsafe-inline' data:`,
-    `style-src 'self' 'unsafe-inline'`,
     `frame-src 'self' 'nonce-${nonce}'`,
     `object-src 'none'`,
     `base-uri 'self'`,
-    'vitals.vercel-insights.com',
-    'api.spotify.com'
   ];
  
   event.headers.set("Content-Security-Policy", csp.join("; "));
