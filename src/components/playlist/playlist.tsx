@@ -9,6 +9,7 @@ import CardBackground from "../cardBackground/cardBackground";
 import { useStylesScoped$ } from "@builder.io/qwik";
 import css from "./playlist.css?inline";
 import SortButton from "../sortButton/sortButton";
+import sortManager from "~/utils/sortManager";
 
 interface PlaylistProps {
   token: string;
@@ -28,7 +29,12 @@ export default component$(({ token, id }: PlaylistProps) => {
   });
   const isSorting = useSignal<boolean>(false);
 
-  const handleSortPlaylist = $(() => {});
+  const handleSortPlaylist = $(() => {
+    isSorting.value = true;
+    sortManager(token, id).then(() => {
+      isSorting.value = false;
+    });
+  });
 
   useVisibleTask$(() => {
     isMobile.value = window.innerWidth < 768;
