@@ -1,109 +1,56 @@
-# Qwik City App ⚡️
+# Spotify Sort - TS
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+[![License](https://img.shields.io/github/license/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/release/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/releases)
+[![Issues](https://img.shields.io/github/issues/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Benny-Nottonson/spotifySort-Qwik/pulls)
 
----
+Spotify Sort - TS is a project written in TypeScript using the Qwik framework. It is a new version of an old project that was originally coded in NextJS/ThreeJS. This new version aims to improve the performance and maintainability of the project by leveraging the features of the Qwik framework. The website provides a fast and efficient way to sort Spotify albums based on the color of their album art.
 
-## Project Structure
+## Features
 
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+- Sorting Spotify albums by the color of their album art
+- Utilizes CCV's, caching, and multithreading for efficient sorting
+- Built on top of the research paper "Comparing Images Using Color Coherence Vectors" by Greg Pass, Ramin Zabih, and Justin Miller from Cornell University
 
-Inside your project, you'll see the following directory structure:
+## About
 
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
-```
+This project is built on top of the research paper titled "Comparing Images Using Color Coherence Vectors" by Greg Pass, Ramin Zabih, and Justin Miller from Cornell University. The paper introduces a method for comparing images based on color histograms and spatial information. It addresses the limitations of color histograms by incorporating spatial information using color coherence vectors (CCV). The CCV approach provides finer distinctions and superior results compared to color histograms for image retrieval.
 
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
+## Project Details
 
-- `src/components`: Recommended directory for components.
-
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
-
-## Add Integrations and deployment
-
-Use the `pnpm qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
-
-```shell
-pnpm qwik add # or `yarn qwik add`
-```
-
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
-
-```shell
-npm start # or `yarn start`
-```
-
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
-
-## Preview
-
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
-
-```shell
-pnpm preview # or `yarn preview`
-```
-
-## Production
-
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
-
-```shell
-pnpm build # or `yarn build`
-```
-
-## Vercel Edge
-
-This starter site is configured to deploy to [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions), which means it will be rendered at an edge location near to your users.
+- **Repository**: [https://github.com/Benny-Nottonson/spotifySort-Qwik](https://github.com/Benny-Nottonson/spotifySort-Qwik)
+- **Author**: [benny-nottonson](https://github.com/benny-nottonson)
 
 ## Installation
 
-The adaptor will add a new `vite.config.ts` within the `adapters/` directory, and a new entry file will be created, such as:
+To run the project locally, follow these steps:
 
-```
-└── adapters/
-    └── vercel-edge/
-        └── vite.config.ts
-└── src/
-    └── entry.vercel-edge.tsx
-```
+1. Clone the repository:
 
-Additionally, within the `package.json`, the `build.server` script will be updated with the Vercel Edge build.
+   ```bash
+   git clone https://github.com/Benny-Nottonson/spotifySort-Qwik.git
+   ```
 
-## Production build
+2. Install the dependencies:
 
-To build the application for production, use the `build` command, this command will automatically run `pnpm build.server` and `pnpm build.client`:
+   ```bash
+   cd spotifySort-Qwik
+   npm install
+   ```
 
-```shell
-pnpm build
-```
+3. Start the development server:
 
-[Read the full guide here](https://github.com/BuilderIO/qwik/blob/main/starters/adapters/vercel-edge/README.md)
+   ```bash
+   npm run dev
+   ```
 
-## Dev deploy
+4. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the project in action.
 
-To deploy the application for development:
+## Contributing
 
-```shell
-pnpm deploy
-```
+Contributions to this project are welcome! If you encounter any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/Benny-Nottonson/spotifySort-Qwik/issues). Pull requests are also appreciated.
 
-Notice that you might need a [Vercel account](https://docs.Vercel.com/get-started/) in order to complete this step!
+## License
 
-## Production deploy
-
-The project is ready to be deployed to Vercel. However, you will need to create a git repository and push the code to it.
-
-You can [deploy your site to Vercel](https://vercel.com/docs/concepts/deployments/overview) either via a Git provider integration or through the Vercel CLI.
+This project is licensed under the [MIT License](https://github.com/Benny-Nottonson/spotifySort-Qwik/blob/main/LICENSE).
