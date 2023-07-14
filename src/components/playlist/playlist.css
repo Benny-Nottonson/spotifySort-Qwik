@@ -97,7 +97,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   margin-top: 1rem;
-  padding:2%;
+  padding: 2%;
+  padding-right: 8%;
 }
 
 .buttonClass {
@@ -122,15 +123,21 @@
 @media (max-width: 768px) {
   .outerContainer {
     width: 15rem;
+    height: 20rem;
     margin: 0;
     padding: 0;
     border-radius: 0;
+  }
+
+  .innerContainer {
+    width: 15rem;
+    height: 20rem;
   }
 
   .buttonContainer {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin:10px;
+    margin-right:1.75rem;
   }
 }

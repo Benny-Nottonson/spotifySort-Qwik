@@ -4,7 +4,6 @@
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: theme("borderColor.DEFAULT", currentColor);
 }
 
 button,
@@ -60,12 +59,18 @@ html {
     "Segoe UI Emoji",
     "Segoe UI Symbol",
     "Noto Color Emoji";
-    overflow: hidden;
 }
 
 body {
   padding: 0;
   line-height: inherit;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .buttonClass {
