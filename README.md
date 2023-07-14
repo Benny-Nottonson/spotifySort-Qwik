@@ -1,6 +1,6 @@
 # Spotify Sort - TS
 
-[![License](https://img.shields.io/github/license/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/blob/master/LICENSE)
 [![Version](https://img.shields.io/github/v/release/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/releases)
 [![Issues](https://img.shields.io/github/issues/benny-nottonson/spotifySort-Qwik)](https://github.com/Benny-Nottonson/spotifySort-Qwik/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Benny-Nottonson/spotifySort-Qwik/pulls)
