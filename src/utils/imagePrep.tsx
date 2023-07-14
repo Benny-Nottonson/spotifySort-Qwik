@@ -1,4 +1,4 @@
-const RGBAtoRGBCache: { [key: string]: [number, number, number]} = {};
+const RGBAtoRGBCache: { [key: string]: [number, number, number] } = {};
 const MacCache: { [key: string]: number } = {};
 
 export default async function prepImage(
@@ -64,7 +64,7 @@ function imageToMacbeth(imageData: ImageData, size: number): number[][] {
       const r = data[pixelIndex];
       const g = data[pixelIndex + 1];
       const b = data[pixelIndex + 2];
-      const rgb: [number, number, number]= [r, g, b];
+      const rgb: [number, number, number] = [r, g, b];
       const key = `${rgb[0]}-${rgb[1]}-${rgb[2]}`;
       if (MacCache[key]) {
         row.push(MacCache[key]);
@@ -96,13 +96,16 @@ function imageToMacbeth(imageData: ImageData, size: number): number[][] {
   return macbethData;
 }
 
-function convertRGBAToRGB(rgb: number[], alpha: number): [number, number, number]{
+function convertRGBAToRGB(
+  rgb: number[],
+  alpha: number,
+): [number, number, number] {
   const key = `${rgb[0]}-${rgb[1]}-${rgb[2]}-${alpha}`;
   if (key in RGBAtoRGBCache) {
     return RGBAtoRGBCache[key];
   }
   const [r, g, b] = rgb;
-  const final: [number, number, number]= [
+  const final: [number, number, number] = [
     Math.round(r * alpha),
     Math.round(g * alpha),
     Math.round(b * alpha),
