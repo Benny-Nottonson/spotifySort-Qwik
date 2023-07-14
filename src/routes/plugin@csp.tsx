@@ -6,7 +6,6 @@ export const onRequest: RequestHandler = event => {
   const nonce = Date.now().toString(36);
   event.sharedMap.set("@nonce", nonce);
   const csp = [
-    `default-src 'self' 'unsafe-inline'`,
     `font-src 'self'`,
     `img-src 'self' 'unsafe-inline' data:`,
     `style-src 'self' 'unsafe-inline'`,
