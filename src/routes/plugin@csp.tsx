@@ -12,7 +12,7 @@ export const onRequest: RequestHandler = event => {
     `object-src 'none'`,
     `base-uri 'self'`,
     `connect-src 'self' https://api.spotify.com`,
-    `img-src 'self' data: https://i.scdn.co, https://mosaic.scdn.co`,
+    `img-src 'self' https://i.scdn.co https://mosaic.scdn.co`,
   ];
  
   event.headers.set("Content-Security-Policy", csp.join("; "));
