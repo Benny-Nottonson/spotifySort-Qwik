@@ -90,8 +90,8 @@ export default component$(({ token, id }: PlaylistProps) => {
                 />
               </div>
               <div class="dataContainer">
-                <p class="dataText">{playlistLength.value} songs</p>
-                <p class="dataTextLarge">{playlistTitle}</p>
+                <h1 class="dataText">{playlistLength.value} songs</h1>
+                <h1 class="dataTextLarge">{playlistTitle}</h1>
               </div>
             </div>
           </>

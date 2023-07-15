@@ -10,7 +10,7 @@ export default component$<NeonTextProps>((props) => {
   useStylesScoped$(css);
   return (
     <div style={{ fontSize: props.size + "rem" }} class="center">
-      <p class="neonText">{props.text}</p>
+      <h1 class="neonText">{props.text}</h1>
     </div>
   );
 });

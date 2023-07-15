@@ -25,7 +25,7 @@ export default component$(() => {
       <div class="innerContainer">
         <div class="innerContainer topMargin">
           <div class="icon">{spotifyIcon}</div>
-          <p class="buttonText">Sort Playlist</p>
+          <h1 class="buttonText">Sort Playlist</h1>
         </div>
       </div>
     </div>

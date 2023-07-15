@@ -19,6 +19,7 @@
   color: transparent;
   width: fit-content;
   mix-blend-mode: exclusion;
+  font-size: 100%;
 }
 
 .center {
