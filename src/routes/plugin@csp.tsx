@@ -1,7 +1,7 @@
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { isDev } from "@builder.io/qwik/build";
- 
-export const onRequest: RequestHandler = event => {
+
+export const onRequest: RequestHandler = (event) => {
   if (isDev) return;
   const nonce = Date.now().toString(36);
   event.sharedMap.set("@nonce", nonce);
@@ -14,6 +14,6 @@ export const onRequest: RequestHandler = event => {
     `connect-src 'self' *`,
     `img-src 'self' *`,
   ];
- 
+
   event.headers.set("Content-Security-Policy", csp.join("; "));
 };

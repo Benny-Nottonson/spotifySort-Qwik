@@ -1,4 +1,3 @@
-
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-brightgreen)](https://github.com/Benny-Nottonson/spotifySort-Qwik)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Lighthouse Score](https://img.shields.io/badge/Lighthouse%20Score-Perfect-9cf)](https://developers.google.com/web/tools/lighthouse)
