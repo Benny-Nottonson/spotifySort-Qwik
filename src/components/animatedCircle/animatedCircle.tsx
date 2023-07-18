@@ -29,14 +29,14 @@ export default component$<AnimatedCircleProps>((props) => {
             animation: move ${props.velocity}s ease-in-out infinite;
         `}
     >
-      <circle cx="129" cy="129" r="129" fill="url(#paint0_linear_1_2)" />
+      <circle cx="129" cy="129" r="129" fill="url(#circle_gradient)" />
       <defs>
         <linearGradient
-          id="paint0_linear_1_2"
-          x1="59"
-          y1="24"
-          x2="218"
-          y2="223"
+          id="circle_gradient"
+          x1="60"
+          y1="25"
+          x2="220"
+          y2="220"
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#34B281" />
