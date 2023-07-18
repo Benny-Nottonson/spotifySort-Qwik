@@ -40,10 +40,10 @@ export default component$<AnimatedCircleProps>((props) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#34B281" />
-          <stop offset="0.21704" stop-color="#33AE81" />
-          <stop offset="0.489874" stop-color="#329881" />
-          <stop offset="0.719799" stop-color="#388381" />
-          <stop offset="0.904349" stop-color="#447381" />
+          <stop offset="0.2" stop-color="#33AE81" />
+          <stop offset="0.5" stop-color="#329881" />
+          <stop offset="0.7" stop-color="#388381" />
+          <stop offset="0.9" stop-color="#447381" />
           <stop offset="1" stop-color="#437381" />
         </linearGradient>
       </defs>
