@@ -36,5 +36,8 @@
     "vercel": "^31.0.3",
     "vite": "4.4.4",
     "vite-tsconfig-paths": "4.2.0"
+  },
+  "dependencies": {
+    "sharp": "^0.32.3"
   }
 }
